@@ -1,0 +1,25 @@
+{
+    "name": "Live Youtube Chat",
+    "version": "1.0",
+    "description": "Chat with whoever else is watching the same video as you",
+    "manifest_version": 2,
+    "icons": { "128": "icon.png" },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+    "page_action": {
+        "default_title": "Make this page red",
+        "default_popup": "popup.html"
+      },
+    "content_scripts": [
+        {
+          "matches": ["https://*.youtube.com/*"],
+          "js": ["contentScript.js"]
+        }
+      ],
+    "permissions" : [
+        "activeTab", "declarativeContent", "*://youtubelivechat.herokuapp.com/*"
+      ],
+      "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net; object-src 'self'"
+  }

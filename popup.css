@@ -1,0 +1,10 @@
+body {
+  width: 450px;
+  height: 450px;
+}
+
+form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
