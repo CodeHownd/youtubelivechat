@@ -8,3 +8,7 @@ form {
   bottom: 0;
   width: 100%;
 }
+
+li {
+  text-decoration: none;
+}

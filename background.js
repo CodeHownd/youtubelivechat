@@ -17,11 +17,3 @@ chrome.runtime.onInstalled.addListener(function () {
     ]);
   });
 });
-
-chrome.pageAction.onClicked.addListener(function (tab) {
-  // No tabs or host permissions needed!
-  console.log("tab url " + tab.url);
-  chrome.tabs.executeScript({
-    code: 'alert("Hi")',
-  });
-});

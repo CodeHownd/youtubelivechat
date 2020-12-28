@@ -15,6 +15,7 @@ socket.on("connect", () => {
         var header = document.getElementById("header");
         header.appendChild(h3);
         videoid = tabs[0].url.split("=")[1];
+        videoid = videoid.split("&")[0];
         console.log(videoid);
         socket.emit("joinorcreate", videoid);
       }
@@ -26,10 +27,22 @@ $(function () {
   $("form").submit(function (e) {
     e.preventDefault(); // prevents page reloading
     socket.emit("message", $("#m").val(), videoid);
+    let time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    var msg = $("#m").val();
+    $("#messages").append($("<li>").text(`${time}: ${msg}`));
     $("#m").val("");
     return false;
   });
   socket.on("message", function (msg, videoid) {
-    $("#messages").append($("<li>").text(msg));
+    let time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    $("#messages").append($("<li>").text(`${time}: ${msg}`));
   });
 });
