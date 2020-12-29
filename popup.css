@@ -1,14 +1,10 @@
 body {
-  width: 450px;
-  height: 450px;
+    min-width:400px;
+    min-height: 400px;
 }
 
-form {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-li {
-  text-decoration: none;
-}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }

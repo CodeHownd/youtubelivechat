@@ -19,7 +19,7 @@
         }
       ],
     "permissions" : [
-        "activeTab", "declarativeContent", "*://youtubelivechat.herokuapp.com/*"
+        "activeTab", "declarativeContent", "*://youtubelivechat.herokuapp.com/*", "storage"
       ],
       "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net; object-src 'self'"
   }
