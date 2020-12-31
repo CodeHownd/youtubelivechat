@@ -12,7 +12,7 @@ socket.on("connect", () => {
         // remove - YouTube from title
         title = title.split('- YouTube')[0]
 
-        $('h5').after(`<h2>${title}</h2>`)
+        $('h5').after(`<h3>${title}</h3>`)
 
         // remove attributes from url to just get id
         videoid = tabs[0].url.split("=")[1];
@@ -47,35 +47,46 @@ $(document).ready(function () {
   $("#send").click(function (e) {
     var msg = $("#m").val();
     socket.emit("message", msg, videoid, saved_nickname);
-    let time = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
+    let time = new Date().toLocaleTimeString();
     $("#messages").append($("<li>").html(`${time}: (<b>${saved_nickname}</b>) ${msg}`));
     $("#m").val("");
+    $('#message').animate({
+      scrollTop: $('#message').scrollHeight
+  }, 1000);
   });
 
   $('#m').keypress(function(event) {
     if (event.keyCode == 13) {
       var msg = $("#m").val();
     socket.emit("message", msg, videoid, saved_nickname);
-    let time = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
+    let time = new Date().toLocaleTimeString();
     $("#messages").append($("<li>").html(`${time}: (<b>${saved_nickname}</b>) ${msg}`));
     $("#m").val("");
+    $('#message').animate({
+      scrollTop: $('#message').scrollHeight
+  }, 1000);
     }
 });
 
+socket.on('chathistory', (chats) => {
+  for (chat of chats.reverse()) {
+    console.log(chat);
+    let time = ''
+    if (chat.created_at) time = new Date(chat.created_at).toLocaleTimeString()
+    $("#messages").append($("<li>").html(`${time}: (<b>${chat.nicknameOfSender}</b>) ${chat.messageContent}`));
+    $('#message').animate({
+      scrollTop: $('#message').scrollHeight
+  }, 1000);
+  }
+})
+
   socket.on("message", function (msg, videoid, sender_nickname) {
-    let time = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
+    console.log(sender_nickname)
+    let time = new Date().toLocaleTimeString();
     $("#messages").append($("<li>").html(`${time}: (<b>${sender_nickname}</b>) ${msg}`));
+    $('#message').animate({
+      scrollTop: $('#message').scrollHeight
+  }, 1000);
+
   });
 });

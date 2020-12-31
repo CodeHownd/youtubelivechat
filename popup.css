@@ -1,6 +1,14 @@
 body {
-    min-width:400px;
+    width:400px;
     min-height: 400px;
+    max-height: 400px;
+
+}
+
+html {
+    width:400px;
+    min-height: 400px;
+    max-height: 400px;  
 }
 
 ul {
@@ -8,3 +16,9 @@ ul {
     margin: 0;
     padding: 0;
   }
+
+#message {
+    overflow: auto; 
+    height: 275px; 
+    width: 400px;
+}
